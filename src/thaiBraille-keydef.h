@@ -1,6 +1,6 @@
-#define KEY_CTRL 0x01
-#define KEY_SHIFT 0x02
-#define KEY_ALT 0x04
+#define KEY_CTRL 0xE0
+#define KEY_SHIFT 0xE1
+#define KEY_ALT 0xE2
 #define KEY_0 0x27
 #define KEY_1 0x1E
 #define KEY_2 0x1F

@@ -70,7 +70,7 @@ byte CMDKEY[64][4] = {
     {0x00,              0x00,           0x00,           0x00},                  // 62
     {0x00,              0x00,           0x00,           0x00},                  // 63
 };
-byte BrailleKey[256][4] = {
+byte BrailleKey[257][4] = {
     {0x00,              0x00,           0x00,           0x00},                  // 0
     {0x00,              KEY_A,          0x00,           KEY_T},                 // 1 char a or ะ
     {0x00,              KEY_1,          0x00,           KEY_Q},                 // 2 char 1 or ๆ
@@ -139,6 +139,7 @@ byte BrailleKey[256][4] = {
     {KEY_SHIFT,         KEY_A,          0x00,           0x00},                  // 65 char A
     {0x00,              0x00,           KEY_SHIFT,      KEY_2},                 // 66 เลข ๑
     {KEY_SHIFT,         KEY_B,          0x00,           0x00},                  // 67 char B
+    {0x00,              0x00,          0x00,           0x00},                  // 68 *******************
     {KEY_SHIFT,         KEY_K,          0x00,           0x00},                  // 69 char K
     {0x00,              0x00,           KEY_SHIFT,      KEY_3},                 // 70 เลข ๒
     {KEY_SHIFT,         KEY_L,          KEY_SHIFT,      KEY_PERIOD},            // 71 char L or ฬ
