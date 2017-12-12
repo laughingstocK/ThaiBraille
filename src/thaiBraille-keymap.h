@@ -1,10 +1,13 @@
-byte ArrowKey[16] = {
+#include "thaiBraille-keydef.h"
+
+const byte ArrowKey[5][4] = {
     0x00,               KEY_UP,         KEY_LEFT,       0x00,                   // 0,   1,  2,  3
     KEY_RIGHT,          0x00,           0x00,           0x00,                   // 4,   5,  6,  7
     KEY_DOWN,           0x00,           0x00,           0x00,                   // 8,   9,  10, 11
     0x00,               0x00,           0x00,           0x00,                   // 12,  13, 14, 15
 };
-byte CMDKEY[64][4] = {
+
+const byte CMDKEY[64][4] = {
     {0x00,              0x00,           0x00,           0x00},                  // 0
     {KEY_ENTER,         0x00,           0x00,           0x00},                  // 1
     {KEY_BACKSPACE,     0x00,           0x00,           0x00},                  // 2
@@ -50,7 +53,7 @@ byte CMDKEY[64][4] = {
     {KEY_F10,           0x00,           0x00,           0x00},                  // 42
     {KEY_F11,           0x00,           0x00,           0x00},                  // 43
     {KEY_F12,           0x00,           0x00,           0x00},                  // 44
-    {0x00,              0x00,           0x00,           0x00},                    // 45
+    {0x00,              0x00,           0x00,           0x00},                  // 45
     {0x00,              0x00,           0x00,           0x00},                  // 46
     {0x00,              0x00,           0x00,           0x00},                  // 47
     {0x00,              0x00,           0x00,           0x00},                  // 48
@@ -70,12 +73,13 @@ byte CMDKEY[64][4] = {
     {0x00,              0x00,           0x00,           0x00},                  // 62
     {0x00,              0x00,           0x00,           0x00},                  // 63
 };
-byte BrailleKey[257][4] = {
+
+const byte BrailleKey[257][4] = {
     {0x00,              0x00,           0x00,           0x00},                  // 0
     {0x00,              KEY_A,          0x00,           KEY_T},                 // 1 char a or ะ
     {0x00,              KEY_1,          0x00,           KEY_Q},                 // 2 char 1 or ๆ
     {0x00,              KEY_B,          0x00,           KEY_B},                 // 3 char b or อิ
-    {0x00,              KEY_QUOTE,      0x00,           KEY_H},                 // 4 char ' (APOSTROPHE) or อ็
+    {0x00,              KEY_QUOTE,      KEY_SHIFT,      KEY_H},                 // 4 char ' (APOSTROPHE) or อ็
     {0x00,              KEY_K,          0x00,           KEY_MINUS},             // 5 char k or ข
     {0x00,              KEY_2,          0x00,           KEY_U},                 // 6 char 2 or อี
     {0x00,              KEY_L,          0x00,           KEY_RIGHT_BRACE},       // 7 char l or ล
@@ -327,30 +331,10 @@ byte BrailleKey[257][4] = {
     {0x00,              0x00,           0x00,           0x00},                  // 253
     {0x00,              0x00,           KEY_SHIFT,      KEY_T},                 // 254 ธ
     {0x00,              0x00,           0x00,           0x00},                  // 255
-    {0x00,              0x00,           0x00,           0x00},                  // 256
+    {0x00,              0x00,           0x00,           0x00}                  // 256
 };
-byte BrialleKey2Byte[19][4] = {
-    {0x07,              0x02,           KEY_SHIFT,      KEY_SLASH},             // 0 ฦ
-    {0x17,              0x02,           KEY_SHIFT,      KEY_A},                 // 1 ฤ
-    {0x20,              0x25,           KEY_SHIFT,      KEY_BACKSLASH},         // 2 ฅ
-    {0x20,              0x2C,           KEY_SHIFT,      KEY_G},                 // 3 ฌ
-    {0x20,              0x3D,           KEY_SHIFT,      KEY_P},                 // 4 ญ
-    {0x20,              0x19,           KEY_SHIFT,      KEY_E},                 // 5 ฎ
-    {0x20,              0x33,           KEY_SHIFT,      KEY_D},                 // 6 ฏ
-    {0x20,              0x1E,           KEY_SHIFT,      KEY_LEFT_BRACE},        // 7 ฐ
-    {0x20,              0x3E,           KEY_SHIFT,      KEY_R},                 // 8 ฑ
-    {0x20,              0x1D,           KEY_SHIFT,      KEY_I},                 // 9 ณ
-    {0x20,              0x39,           0x00,           KEY_4},                 // 10 ภ
-    {0x20,              0x0E,           KEY_SHIFT,      KEY_L},                 // 11 ศ
-    {0x24,              0x25,           KEY_SHIFT,      KEY_S},                 // 12 ฆ
-    {0x24,              0x05,           KEY_SHIFT,      KEY_SEMICOLON},         // 13 ซ
-    {0x24,              0x0E,           KEY_SHIFT,      KEY_K},                 // 14 ษ
-    {0x24,              0x07,           KEY_SHIFT,      KEY_PERIOD},            // 15 ฬ
-    {0x30,              0x3E,           KEY_SHIFT,      KEY_COMMA},             // 16 ฒ
-    {0x31,              0x01,           0x00,           KEY_PERIOD},            // 17 ใ
-    {0x34,              0x3E,           KEY_SHIFT,      KEY_T},                 // 18 ธ
-};
-byte SpaceKey[129][4] = {
+
+const byte SpaceKey[129][4] = {
     {0x00,              0x00,           0x00,           0x00},                  // 0
     {KEY_CTRL,          0x00,           KEY_A,          0x00},                  // 1 Select all text.
     {KEY_ALT,           0x00,           KEY_F,          0x00},                  // 2 File menu options in current program. (Key_1)
@@ -479,5 +463,5 @@ byte SpaceKey[129][4] = {
     {KEY_CTRL,          0x00,           KEY_Y,          0x00},                  // 125 Redo
     {0x00,              0x00,           0x00,           0x00},                  // 126
     {0x00,              0x00,           0x00,           0x00},                  // 127
-    {0x00,              0x00,           KEY_ENTER,      0x00},                  // 128 Key Enter
+    {0x00,              0x00,           KEY_ENTER,      0x00}                  // 128 Key Enter
 };

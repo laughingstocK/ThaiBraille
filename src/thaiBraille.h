@@ -84,6 +84,16 @@ class Driver {
 		byte _brailleRemapping(byte original) {
 			byte result;
 			for (int i = 0; i < 8; i++) bitWrite(result, i, bitRead(original, BRAILLE_MAPPING[i] - 1));
+			// for (int i = 0; i < 8; i++) {
+			// 	int x = bitRead(original, BRAILLE_MAPPING[i] - 1);
+			// 	if(x == 1){
+			// 		x = 0;
+			// 	}
+			// 	else{
+			// 		x = 1;
+			// 	}
+			// 	bitWrite(result, i, x);
+			// }
 			return result;
 		}
 };
