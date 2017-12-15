@@ -9,7 +9,7 @@ const bool USING_COMMAND = true;
 const bool COMMAND_EXT_RES = false;
 
 // Arrow Order:						[UP]	[LEFT]	[RIGHT]	[DOWN]
-const byte THUMB_PINOUT[4] =	{	17,		16,		15,		14		};
+const byte THUMB_PINOUT[4] =	{	2,		3,		4,		5		};
 const bool USING_THUMB = true;
 const bool THUMB_EXT_RES = false;
 
