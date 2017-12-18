@@ -114,8 +114,8 @@ void keyDownEventHandler(Pinout pinout, KeyEventArgs e) {
   }
 }
 
-void clearEventHandler(){
-  
+void clearEventHandler() {
+
 }
 
 //------------- Check pressing key and transmit value and clear value memorized ---------------------//
@@ -155,24 +155,44 @@ void loop() {
 }
 
 //------------- Read value from serial to display -------------//
-
+int start_byte = 0;
+int start_len = 0;
+int start_end = 0;
 void serialEvent() {
   while (Serial.available()) {
-    NVDA_BUFFER[NVDA_COUNTER] = (byte) Serial.read();
-    NVDA_COUNTER++;
+    byte d = (byte) Serial.read();
+    if (d == 0xff && start_byte==0) {
+      start_byte = 1;
+     // Serial.write("start read");
+    } else if (start_byte == 1 && start_len == 0) {
+      start_len = 40;
+       //Serial.write("start lan");
+
+    } else if (start_byte == 1 && start_len == 40 && start_end == 0) {
+    //  Serial.write("get byte");
+      NVDA_BUFFER[NVDA_COUNTER] = d;
+      NVDA_COUNTER++;
+      if (start_len == NVDA_COUNTER) {
+        start_end = 1;
+        // Serial.write("end byte");
+      }
+    }
   }
 }
 
 //----------- Drive to display -----------//
 
-void displayNvda(){
-    if (NVDA_COUNTER == 40) {
+void displayNvda() {
+  if (start_end == 1) {
     DRIVER.Begin();
     for (int i = 0; i < 40; i++) {
       DRIVER.Write(NVDA_BUFFER[i]);
     }
     DRIVER.End();
     NVDA_COUNTER = 0;
+    start_byte = 0;
+    start_len = 0;
+    start_end = 0;
   }
 }
 
@@ -180,7 +200,7 @@ void displayNvda(){
 
 void transmitKeyCode(byte *param) {
   if (param[0] != 0 && param[1] == 0 && param[2] == 0 && param[3] == 0 && param[4] == 0  ) { //Braille Key
-    _braille(param, buff_write,default_lang_index);
+    _braille(param, buff_write, default_lang_index);
   }
 
   else if (param[0] == 0 && param[1] != 0 && param[2] == 0 && param[3] == 0 && param[4] == 0 ) { // Space
@@ -192,7 +212,7 @@ void transmitKeyCode(byte *param) {
   }
 
   else if (param[0] == 0 && param[1] == 0 && param[2] != 0 && param[3] == 0 && param[4] == 0 ) { // Cmd Key
-    _cmdkey(param, buff_write,default_lang_index);
+    _cmdkey(param, buff_write, default_lang_index);
   }
 
   else if (param[0] == 0 && param[1] == 0 && param[2] == 0 && param[3] != 0 && param[4] == 0 ) { // Thumb Key
